@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+    <section id="home">
+        <picture>
+            <source media="(max-width:768px)" srcset="/static/images/background_home_m.webp">
+            <source media="(min-width:500px)" srcset="/static/images/background_home.webp">
+            <img  loading="lazy" decoding="async" src="/static/logo.png" alt="Background image">
+        
+            <div class="dark-overlay"></div>
+            <div class="dark-overlay-2"></div>
+            
+        </picture>
+    <div class="container">
+        <img src="/static/logo.png" alt="" id="logo" width="140px" height="140px">
+        <p style="font-family: 'Great Vibes'; color:var(--primary-color); margin-top:5px; margin-bottom:-22px;font-size:calc(var(--header-font-size) - .5vw)">Welcome To Farouk Bakeries</p>
+        <p style="font-family: 'Playfair Display';">We Are Excited To Cook <br>For You Today</p>
+        
+    </div>
+    <img style="position: absolute;bottom:20%;z-index:4;" width="50px" height="50px" src="/static/images/mouse.svg" alt="">
+
+    </section>
+
+    <section id="story">
+        <div class="story-container">
+            <div class="avatars">
+                <img src="/static/images/girl.svg" alt="" width="210px" height="210px">
+                <img src="/static/images/boy.svg" alt="" width="210px" height="210px">
+                <img src="/static/images/bread.svg" alt="" width="140px" height="140px">
+                <p id="discover">Discover</p>
+
+            </div>
+                <p style="font-size: var(--font-size); font-family:'Poppins';text-align:center;">Made by Yassin, <br> for my love of web development, <br> and my love for <span style="font-family: 'Great Vibes';">myself</span></p>
+        </div>
+
+        <div class="pfp">
+            <img src="/static/images/mariem.webp" width="350px" height="350px" alt="yassin pfp">
+            <img src="/static/images/yassin.webp" width="350px" height="350px" alt="mariem pfp">
+
+        </div>
+    </section>
+  
+{% endblock %}

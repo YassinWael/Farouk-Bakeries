@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <!-- Reset css -->
+    <style>*,::after,::before{box-sizing:border-box}ol[class],ul[class]{padding:0;list-style:none}blockquote,body,dd,dl,figcaption,figure,h1,h2,h3,h4,li,ol[class],p,ul[class]{margin:0}body{min-height:100vh;scroll-behavior:smooth;text-rendering:optimizeSpeed;line-height:1.5;}a:not([class]){text-decoration-skip-ink:auto}img{max-width:100%;display:block}article>*+*{margin-top:1em}button,input,select,textarea{font:inherit}@media (prefers-reduced-motion:reduce){*{animation-duration:0s!important;animation-iteration-count:1!important;transition-duration:0s!important;scroll-behavior:auto!important}}</style> 
+    <!-- Reset css -->
+    
+    <title>BarberShop</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="stylesheet" href="/static/styles/styles.css">
+    
+    {% block head %}
+    {% endblock %}
+    
+</head>
+
+
+
+
+
+<body>
+        <audio loop id = "music">
+            <source src = "/static/music.mp3">
+        </audio>
+
+    <script>
+        window.addEventListener('click', function () {
+        
+            var audio = document.getElementById("music");
+            audio.play();
+        })
+    </script>
+
+    
+
+
+    {% block content %}
+    
+    {% endblock %}
+</body>
+
+<script defer>
+   
+</script>
+</html>
