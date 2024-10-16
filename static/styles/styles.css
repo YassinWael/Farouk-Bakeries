@@ -4,7 +4,7 @@
     --border-test:2px solid red;
     --border-test-2:2px solid blue;
     --border-test-3:2px solid yellow;
-    --font-size:clamp(20px,1.5vw + 3px,30px);
+    --font-size:clamp(40px,2vw + 3px,45px);
     --header-font-size:clamp(30px,3vw + 3px,50px);
 
 
@@ -68,6 +68,8 @@ p {
   font-size: var(--header-font-size);
   color: white;
   font-family: 'Poppins';
+ 
+  
 }
 
 body {
@@ -162,6 +164,8 @@ picture * {
   align-items: center;
   flex-wrap: wrap;
   padding: 50px;
+  /* border: 5px dotted green; */
+  padding-left: 0;
 }
 
 #story p {
@@ -196,20 +200,20 @@ picture * {
 }
 .avatars img:first-child {
 
-  top: 20px;
+  top: 50px;
   left: 30px;
   z-index: 1;
   
 }
 
 .avatars img:nth-child(2) {
-  top: 20px;
+  top: 50px;
   left:150px;
   z-index: 1;
 }
 
 .avatars img:nth-child(3) {
-  top: 71px;
+  top: 101px;
   left: 121px;
   z-index: -1;
 }
@@ -219,8 +223,8 @@ picture * {
   font-family: 'Great Vibes';
   font-size: var(--header-font-size);
   position: absolute;
-  top: 180px;
-  left: 80px;
+  top: 210px;
+  left: 90px;
   font-weight: normal;
   transform: rotate(-30deg);
   z-index: 4;
@@ -230,7 +234,7 @@ picture * {
   position: relative;
   /* border: var(--border-test); */
   width: 50%;
-  min-width: 500px;
+  min-width: 400px;
   min-height: 350px;
 
 }
@@ -238,14 +242,33 @@ picture * {
 .pfp * {
   position: absolute;
   top: 0;
+  transition: all .3s ease;
+}
+.pfp img:hover {
+  transform: scale(1.1);
+  
 }
 
-.pfp img:first-child {
-  right: 0;
+/* girl */
+.pfp img:first-child { 
+  left: 80px;
   top: 70px;
 
 }
 
 .pfp img:last-child {
-  right: 120px;
+  right: 90px;
 }
+
+
+@keyframes text-color {
+  from {
+    color: blue;
+  }
+
+  to {
+    color: red;
+  }
+}
+
+/* ToDo: add thecolor animation to mariem. */
