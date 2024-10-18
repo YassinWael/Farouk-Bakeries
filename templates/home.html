@@ -2,6 +2,7 @@
 
 
 {% block content %}
+
     <section id="home">
         <picture>
             <source media="(max-width:768px)" srcset="/static/images/background_home_m.webp">
@@ -14,7 +15,16 @@
         </picture>
     <div class="container">
         <img src="/static/logo.webp" alt="" id="logo" width="140px" height="140px">
-        <p style="font-family: 'Great Vibes'; color:var(--primary-color); margin-top:5px; margin-bottom:-22px;font-size:calc(var(--header-font-size) - .5vw)">Welcome To Farouk Bakeries</p>
+        <nav>
+            <ul>
+                <li>
+                    <a href="/#story">Story / </a>
+                </li>
+                <li><a href="/favourites">Favourites / </a></li>
+                <li><a href="/#end">End</a></li>
+            </ul>
+        </nav>
+        <p style="font-family: 'Great Vibes'; color:var(--primary-color); margin-top:5px; margin-bottom:-22px;font-size:calc(var(--header-font-size) - .5vw);animation: colorShift 4s ease-in-out infinite;">Welcome To Farouk Bakeries</p>
         <p style="font-family: 'Playfair Display';">We Are Excited To Cook <br>For You Today</p>
         
     </div>
@@ -46,5 +56,58 @@
 
         </div>
     </section>
+
+    <section id="end">
+        <picture>
+            <source media="(max-width:768px)" srcset="/static/images/donuts_m.webp">
+            <source media="(min-width:500px)" srcset="/static/images/donuts.webp">
+            <img  loading="lazy" decoding="async" src="/static/images/background_home.webp" alt="Background image">
+        
+            <div class="dark-overlay"></div>
+            <div class="dark-overlay-2"></div>
+            
+        </picture>
+        <img src="/static/logo.webp" alt="" id="logo" width="160px" height="160px">
+        <nav>
+            <ul>
+                <li>
+                    <a href="/#story">Story / </a>
+                </li>
+                <li><a href="/favourites">Favourites / </a></li>
+                <li><a href="/#end">End</a></li>
+            </ul>
+        </nav>
+        <p id="end-text">Designed, Developed, and Maintained By the one and only.</p>
+        <button id="end-button"></button>
+        <img src="/static/images/chick.svg" id="end-chick" width="350px" height="350px" alt="chick image">
+        
+
+    </section>
+
+<script>
+    const endSection = document.getElementById("end")
+    const endButton = document.getElementById("end-button");
+   
+
+    function createHeart(e) {
+        const heart = document.createElement('div'); // Create a new div for the heart
+        heart.innerText = '❤️'; // Set the heart symbol
+        heart.classList.add('heart'); // Add the heart class for styling
+
+        // Set random position near the button
+        heart.style.left = `${e.clientX}px`; // Use the x position of the mouse click
+        heart.style.top = `${e.clientY}px`;  // Use the y position of the mouse click
+         // Add the heart to the body
+        endSection.appendChild(heart)
+        // Remove the heart after 2 seconds to clean up the DOM
+       
+        console.log("Done.")
+    }
+    endButton.addEventListener("click",(e) => {
+        console.log("I got clicked!!");
+        createHeart(e)
+    })
+   
+</script>
   
 {% endblock %}
