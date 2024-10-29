@@ -1,9 +1,33 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<div class="favourites">
+    <div class="me red-border">
+        {% for favourite in favourites if favourite['created_by'] == "Yassin" %}
+           
+                
+                <p>
+                
+                    {{ favourite['content'] }}<br>
+                </p>
+                
 
-{% for favourite in favourites %}
-
-{% endfor %}
+                    
+          
+        {% endfor %}
+    </div>
+    <div class="her green-border">
+        {% for favourite in favourites if favourite['created_by'] == "Mariem" %}
+           
+                
+                <p>{{ favourite['content'] }}<br></p>
+          
+        {% endfor %}
+    </div>
+    
+</div>
 
 {% endblock %}
+
+
+

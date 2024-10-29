@@ -50,6 +50,18 @@
   }
 
 
+.red-border {
+  border: 5px dotted red !important;
+}
+
+.green-border {
+  border: 5px dotted green !important;
+}
+
+
+
+
+
 html {
   scroll-behavior: smooth;
 }
@@ -72,7 +84,7 @@ a::after {
   opacity: 0;
   content: "";
   z-index: 72;
-  transition: all .3s ease-in-out;
+  transition: all .2s ease-in-out;
 }
 
 a:hover::after {
@@ -101,7 +113,7 @@ li {
 }
 p {
   font-size: var(--header-font-size);
-  color: white;
+  color: black;
   font-family: 'Poppins';
 
  
@@ -117,7 +129,6 @@ body {
     font-style: italic;
     min-width: 100%;
     
-    cursor:url(/static/images/mouse.svg),crosshair;
 
 
 }
@@ -338,7 +349,7 @@ picture * {
 
 
 
-#end-text {
+.end-text {
   color: black;
   z-index: 4;
   font-family: 'Great Vibes';
@@ -386,6 +397,25 @@ picture * {
   z-index: 99;
   opacity: 1;
 }
+
+
+/* ------------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------------- */
+/* -----------------------------------Favourites.html--------------------------------*/
+/* ------------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------------- */
+
+.favourites {
+  display: flex;
+  width: 100%;
+  border: 5px dotted red;
+  height: 100vh;
+  padding: 16px;
+}
+
+
+
+
 
 
 
