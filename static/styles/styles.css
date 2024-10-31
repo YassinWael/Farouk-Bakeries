@@ -51,11 +51,11 @@
 
 
 .red-border {
-  border: 5px dotted red !important;
+  border: 2.5px dotted red !important;
 }
 
 .green-border {
-  border: 5px dotted green !important;
+  border: 2.5px dotted green !important;
 }
 
 
@@ -408,13 +408,98 @@ picture * {
 .favourites {
   display: flex;
   width: 100%;
-  border: 5px dotted red;
   height: 100vh;
-  padding: 16px;
+  background:linear-gradient(226deg, #FED1EF 16.65% 16.65%, #339ADC 80.6% 80.6%);
+  position: relative;
+
+}
+
+.me,.her {
+  position: flex;
+  flex-direction: column;
+  width: 50%;
+  position: relative;
+}
+.favourites-header {
+  height: 10%;
+  text-align: center;
+  font-family: 'Playfair Display';
+  font-size: 20px;
 }
 
 
+.note-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  
+  height: 90%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 
+.note {
+  width: 30%;
+  min-width: 240px;
+  height: 180px;
+  background:linear-gradient(224deg, #D84468 0% 0%, #FFB199 99.48% 99.48%);
+  margin: 5px;
+  border-radius: 20px;
+  box-shadow: 0px 3px 8px rgba(0,0,0,0.6);
+  border: 1px goldenrod solid;
+  transition: .2s transform ease-in-out, .3s box-shadow ease-in-out;
+}
+
+.note:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 8px 12px rgba(0,0,0,0.8);
+
+}
+
+.note-popup {
+  position: absolute;
+  width: 85%;
+  height: 85%;
+  top: 10%;
+  left: 8%;
+  border-radius: 20px;
+  background:linear-gradient(224deg, #D84468 0% 0%, #FFB199 99.48% 99.48%);
+  box-shadow: 0px 0px 20px 20px #d8446992;
+  z-index: 6;
+
+}
+
+.full-blur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  backdrop-filter: blur(5px);
+}
+
+.note-popup,.full-blur {
+  display: none;
+}
+
+.note-popup-container {
+  position: relative;
+  height: 100%;
+  padding: 16px;
+ 
+}
+
+.note-popup-container img {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+#heart-seperator {
+  align-self: center;
+}
 
 
 
