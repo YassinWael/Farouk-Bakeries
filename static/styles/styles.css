@@ -493,10 +493,23 @@ picture * {
 
 .note-popup-container img {
   position: absolute;
-  right: 10px;
-  top: 10px;
+  right: 20px;
+  top: 20px;
 }
 
+.note-popup-content,.note-popup-date {
+  text-align: center;
+  font-size: var(--font-size);
+  font-family: 'Playfair Display';
+}
+.note-popup-date {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  bottom: 15px;
+  font-size: calc(var(--font-size) - 12px);
+ 
+}
 #heart-seperator {
   align-self: center;
 }

@@ -7,7 +7,11 @@
                 <div class="note-container green-border">
 
                     {% for note in favourites if note['created_by'] == 'Yassin' %}
-                        <button class="note red-border" onclick="showPopup('{{note['content']}}')">{{note['content']}}</button>
+                        {% set content = note['content'] %}
+                        {% set title = note['content'] | truncate(20,true) %}
+                        {% set date = note['date_created'] %}
+                        
+                        <button class="note red-border" onclick="showPopup('{{title}}','{{content}}','{{date}}')">{{title}}</button>
                     {% endfor %}
                     
                 </div>
@@ -49,17 +53,27 @@
     const fullBlur = document.getElementsByClassName("full-blur")[0]
     const notePopupContainer = document.getElementsByClassName('note-popup-container')[0]
     const noteContent = document.createElement('p')
+    const noteDate = document.createElement('p')
+    noteDate.classList.add("note-popup-date")
     noteContent.classList.add("note-popup-content")
 
-    function showPopup(content) {
+    function showPopup(title,content,date) {
         noteContent.innerHTML = "" // Resetting the text incase this isn't the first popup to be opened.
         noteContent.innerText = content
-        console.log("clicked")
+        noteDate.innerHTML = ""
+        noteDate.innerText = date
+        console.log(title)
         console.log(content)
+        console.log(date)
         notePopup.style.display = "block"
         fullBlur.style.display = "block"
         notePopupContainer.appendChild(noteContent)
+        notePopupContainer.appendChild(noteDate)
     }
+
+    // TODO: Modify the mongoDB database so that it stores titles
+    // TODO: Create the form for her to add new entries
+    
 
 
     function hidePopup() {
