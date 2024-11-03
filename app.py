@@ -8,6 +8,7 @@ app = Flask(__name__)
 ic("first")
 client = MongoClient(environ.get("mongodb"))
 db = client["favourites"]   
+
 favourites_collection = db["favourites"]
 
 favourites = (list(favourites_collection.find({})))

@@ -2,17 +2,18 @@
 
 {% block content %}
 <div class="favourites">
-    <div class="me red-border">
+    <div class="me">
                 <p class="favourites-header">What I Love About You</p>
-                <div class="note-container green-border">
+                <div class="note-container">
 
                     {% for note in favourites if note['created_by'] == 'Yassin' %}
                         {% set content = note['content'] %}
                         {% set title = note['content'] | truncate(20,true) %}
                         {% set date = note['date_created'] %}
                         
-                        <button class="note red-border" onclick="showPopup('{{title}}','{{content}}','{{date}}')">{{title}}</button>
+                        <button class="note" onclick="showPopup('{{title}}','{{content}}','{{date}}')">{{title}}</button>
                     {% endfor %}
+                    
                     
                 </div>
                 
@@ -22,15 +23,18 @@
           
        
     </div>
+
+
     <img src="/static/images/heart.svg" alt="Heart" width="117px" height="107px" id="heart-seperator">
-    <div class="her green-border">
+
+    
+    <div class="her">
         <p class="favourites-header">What You Love About Me </p>
         
-        <div class="note-container red-border">
+        <div class="note-container">
 
-            <div class="note"></div>
-            <div class="note"></div>
-            <div class="note"></div>
+            <button class="note"></button>
+          
         </div>
             
           
@@ -40,14 +44,18 @@
 </div>
 
 
+
+
+
 <div class="note-popup">
     <div class="note-popup-container">
         <img src="/static/Close.svg" width="30px" height="30px" onclick="hidePopup()" alt="">
     </div>
 </div>
-<div class="full-blur">
 
-</div>
+<div class="full-blur"></div>
+
+
 <script>
     const notePopup = document.getElementsByClassName("note-popup")[0]
     const fullBlur = document.getElementsByClassName("full-blur")[0]
@@ -82,49 +90,6 @@
         fullBlur.style.display = "none"
     }
 
-
-
-    // Function to randomly place notes within their containers
-// Function to randomly place notes within their containers with some spacing
-function randomlyPlaceNotes() {
-    const containers = document.querySelectorAll('.note-container');
-
-    containers.forEach(container => {
-        const containerWidth = container.offsetWidth;
-        const containerHeight = container.offsetHeight;
-        const notes = container.querySelectorAll('.note');
-        const placedNotes = []; // Keep track of placed note positions
-
-        notes.forEach(note => {
-            note.style.position = 'absolute'; // Ensure notes are positioned freely
-            let randomTop, randomLeft, tooClose;
-
-            do {
-                // Generate random top and left positions within container bounds
-                randomTop = Math.random() * (containerHeight - note.offsetHeight);
-                randomLeft = Math.random() * (containerWidth - note.offsetWidth);
-
-                // Check if the new position is too close to any placed notes
-                tooClose = placedNotes.some(placedNote => {
-                    const distance = Math.sqrt(
-                        Math.pow(placedNote.top - randomTop, 2) + Math.pow(placedNote.left - randomLeft, 2)
-                    );
-                    return distance < 130; // Minimum distance of 100px
-                });
-            } while (tooClose); // Repeat if position is too close to others
-
-            // Apply the position to the note
-            note.style.top = `${randomTop}px`;
-            note.style.left = `${randomLeft}px`;
-
-            // Save this note's position to placedNotes
-            placedNotes.push({ top: randomTop, left: randomLeft });
-        });
-    });
-}
-
-// Call the function when the page loads
-window.onload = randomlyPlaceNotes;
 
 </script>
 

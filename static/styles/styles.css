@@ -98,6 +98,7 @@ nav {
   justify-content: center;
   align-items: center;
   z-index: 300;
+  padding: 0;
 }
 
 ul {
@@ -105,7 +106,8 @@ ul {
   justify-content: center;
   align-items: center;
   gap: 8px;
-  padding-right: 3%;
+  padding: 0;
+ 
 }
 li {
 
@@ -408,23 +410,34 @@ picture * {
 .favourites {
   display: flex;
   width: 100%;
-  height: 100vh;
+  height: 120vh;
   background:linear-gradient(226deg, #FED1EF 16.65% 16.65%, #339ADC 80.6% 80.6%);
   position: relative;
+  overflow-y: auto;
 
 }
 
 .me,.her {
-  position: flex;
+  display: flex;
   flex-direction: column;
   width: 50%;
   position: relative;
+  min-height: max-content;
 }
 .favourites-header {
+  margin-top: 45px;
   height: 10%;
+  min-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
   text-align: center;
-  font-family: 'Playfair Display';
-  font-size: 20px;
+  font-family:sans-serif;
+  font-weight: normal;
+  font-style:italic;
+  
+  font-size: 40px;
+  color: black;
 }
 
 
@@ -433,10 +446,13 @@ picture * {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
   
   height: 90%;
   overflow-y: auto;
   overflow-x: hidden;
+  padding-top: 35px;
+  padding-bottom: 35px;
 }
 
 .note {
@@ -447,7 +463,6 @@ picture * {
   margin: 5px;
   border-radius: 20px;
   box-shadow: 0px 3px 8px rgba(0,0,0,0.6);
-  border: 1px goldenrod solid;
   transition: .2s transform ease-in-out, .3s box-shadow ease-in-out;
 }
 
@@ -564,6 +579,21 @@ picture * {
   .pfp * {
     border-radius: 50%;
     padding: 0;
+  }
+
+  .favourites {
+    flex-direction: column;
+    height: 180vh;
+  }
+
+  .me,.her {
+    width: 100%;
+    overflow: hidden;
+    height: calc(max-content + 10vh);
+  }
+
+  #heart-seperator {
+    margin: 20px 0;
   }
 }
 
