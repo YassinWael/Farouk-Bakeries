@@ -1,8 +1,34 @@
 {% extends "layout.html" %}
 
+
+{% block head %}
+
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+ 
+
+{% endblock %}
+
+
+
 {% block content %}
+
+
+<nav style="position: absolute; top:0; z-index:99; margin:auto;">
+    <ul >
+        <li>
+            <a style="color:black;" href="/#story">Story / </a>
+        </li>
+        <li><a style="color:#C49A6C;" href="/favourites">Favourites</a></li>
+        <li><a style="color:black;" href="/#end"> /  End</a></li>
+    </ul>
+</nav>
+
 <div class="favourites">
-    <div class="me">
+        <div class="me">
                 <p class="favourites-header">What I Love About You</p>
                 <div class="note-container">
 
@@ -11,7 +37,7 @@
                         {% set title = note['content'] | truncate(20,true) %}
                         {% set date = note['date_created'] %}
                         
-                        <button class="note" onclick="showPopup('{{title}}','{{content}}','{{date}}')">{{title}}</button>
+                        <button class="note animate__animated animate__fadeInUp" onclick="showPopup('{{title}}','{{content}}','{{date}}')">{{title}}</button>
                     {% endfor %}
                     
                     
@@ -25,18 +51,37 @@
     </div>
 
 
-    <img src="/static/images/heart.svg" alt="Heart" width="117px" height="107px" id="heart-seperator">
+    <img src="/static/images/heart.svg"  alt="Heart" width="117px" height="107px" id="heart-seperator">
 
     
     <div class="her">
         <p class="favourites-header">What You Love About Me </p>
         
         <div class="note-container">
+            {% if found_mariem %}
+             {% for note in favourites if note['created_by'] == 'Mariem' %}
+                        {% set content = note['content'] %}
+                        {% set title = note['content'] | truncate(20,true) %}
+                        {% set date = note['date_created'] %}
+                        
+                        <button class="note animate__animated animate__fadeInDown" onclick="showPopup('{{title}}','{{content}}','{{date}}')">{{title}}</button>
+            {% endfor %}
+            {% else %}
+                    <div class="hidden-her">
 
-            <button class="note"></button>
+                        <div class="hidden-notes-container">
+                            <button class="note"></button><button class="note"></button><button class="note"></button><button class="note"></button>
+                        </div>
+                        
+                            <div class="blur"></div>
+                            <p>Nothing, yet. 😔</p>
+                            <button id="create-note" class="hover" onclick="showPopup()">Create</button>
+                    </div>
+                    
+            {% endif %}
           
         </div>
-            
+             
           
      
     </div>
@@ -49,7 +94,7 @@
 
 <div class="note-popup">
     <div class="note-popup-container">
-        <img src="/static/Close.svg" width="30px" height="30px" onclick="hidePopup()" alt="">
+        <img src="/static/Close.svg" class="animate__animated animate__fadeInUp"  width="35px" height="35px" onclick="hidePopup()" alt="">
     </div>
 </div>
 
@@ -57,37 +102,58 @@
 
 
 <script>
+
     const notePopup = document.getElementsByClassName("note-popup")[0]
     const fullBlur = document.getElementsByClassName("full-blur")[0]
     const notePopupContainer = document.getElementsByClassName('note-popup-container')[0]
+
+
+    const noteTitle = document.createElement('p')
     const noteContent = document.createElement('p')
     const noteDate = document.createElement('p')
+    
+    noteTitle.classList.add("animate__animated")
+
     noteDate.classList.add("note-popup-date")
+    noteTitle.classList.add("note-popup-title")
     noteContent.classList.add("note-popup-content")
+    
 
     function showPopup(title,content,date) {
-        noteContent.innerHTML = "" // Resetting the text incase this isn't the first popup to be opened.
-        noteContent.innerText = content
+        // Resetting the text incase this isn't the first popup to be opened.
+        noteTitle.innerHTML = ""
+        noteContent.innerHTML = "" 
         noteDate.innerHTML = ""
+
+
+        noteTitle.innerText = title
+        noteContent.innerText = content
         noteDate.innerText = date
-        console.log(title)
-        console.log(content)
-        console.log(date)
+
+    
+
+        // Showing the popup
         notePopup.style.display = "block"
         fullBlur.style.display = "block"
+
+        // Add the content
+        notePopupContainer.appendChild(noteTitle)
         notePopupContainer.appendChild(noteContent)
         notePopupContainer.appendChild(noteDate)
-    }
 
-    // TODO: Modify the mongoDB database so that it stores titles
+        noteTitle.classList.add("animate__fadeInDown")
+        
+    }
+    
     // TODO: Create the form for her to add new entries
     
 
 
     function hidePopup() {
-        console.log("closed")
-        notePopup.style.display = "none"
-        fullBlur.style.display = "none"
+    console.log("closed")
+    notePopup.style.display = "none"
+    fullBlur.style.display = "none"
+    
     }
 
 

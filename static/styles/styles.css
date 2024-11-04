@@ -59,7 +59,15 @@
 }
 
 
+.hover {
+  border: 2px solid red;
+  transition: all 0.3s ease;
+}
 
+.hover:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 4px 2px rgba(0,0,0,0.8);
+}
 
 
 html {
@@ -413,7 +421,7 @@ picture * {
   height: 120vh;
   background:linear-gradient(226deg, #FED1EF 16.65% 16.65%, #339ADC 80.6% 80.6%);
   position: relative;
-  overflow-y: auto;
+  overflow-y: hidden;
 
 }
 
@@ -449,7 +457,7 @@ picture * {
   justify-content: space-around;
   
   height: 90%;
-  overflow-y: auto;
+  overflow-y: hidden;
   overflow-x: hidden;
   padding-top: 35px;
   padding-bottom: 35px;
@@ -459,11 +467,12 @@ picture * {
   width: 30%;
   min-width: 240px;
   height: 180px;
-  background:linear-gradient(224deg, #D84468 0% 0%, #FFB199 99.48% 99.48%);
+  background:linear-gradient(224deg, rgb(216, 68, 104) 0% 0%, #FFB199 99.48% 99.48%);
   margin: 5px;
   border-radius: 20px;
-  box-shadow: 0px 3px 8px rgba(0,0,0,0.6);
+  box-shadow: 0px 0px 20px 6px rgba(216, 68, 104, 0.8);
   transition: .2s transform ease-in-out, .3s box-shadow ease-in-out;
+  border: none;
 }
 
 .note:hover {
@@ -485,7 +494,7 @@ picture * {
 
 }
 
-.full-blur {
+.full-blur,.blur {
   position: absolute;
   top: 0;
   left: 0;
@@ -493,6 +502,55 @@ picture * {
   height: 100%;
   z-index: 5;
   backdrop-filter: blur(5px);
+}
+
+.blur {
+  z-index: 4;
+  backdrop-filter: blur(50px) !important;
+  width: 105%;
+  height: 105%;
+ 
+
+}
+
+.hidden-her {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap:20px;
+}
+
+.hidden-her p {
+  z-index: 5;
+}
+
+#create-note {
+  z-index: 5;
+  width: 200px;
+  height: 50px;
+  border-radius: 8px;
+  background: #DAA520;
+  color: black;
+  border: none;
+  font-family: sans-serif !important;
+  font-weight: 100;
+}
+
+.hidden-notes-container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+
 }
 
 .note-popup,.full-blur {
@@ -510,12 +568,20 @@ picture * {
   position: absolute;
   right: 20px;
   top: 20px;
+  z-index: 200;
 }
 
-.note-popup-content,.note-popup-date {
+.note-popup-content,.note-popup-title,.note-popup-date {
   text-align: center;
   font-size: var(--font-size);
   font-family: 'Playfair Display';
+}
+
+.note-popup-content {
+  font-size: 22px !important;
+  font-family: 'Poppins' !important;
+  margin-top: 100px;
+  font-weight: 400 !important;
 }
 .note-popup-date {
   position: absolute;
@@ -523,10 +589,15 @@ picture * {
   transform: translate(-50%,-50%);
   bottom: 15px;
   font-size: calc(var(--font-size) - 12px);
+  color: hsla(0, 0%, 0%, 0.659);
  
 }
 #heart-seperator {
   align-self: center;
+}
+
+.note-popup, .note-popup-container {
+  will-change: opacity, transform; /* Hints to the browser to optimize these elements */
 }
 
 

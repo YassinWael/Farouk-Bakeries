@@ -22,7 +22,10 @@ def home():
 @app.route("/favourites",methods=["GET","POST"])
 def show_favourites():
     favourites = (list(favourites_collection.find({})))
-    return render_template("favourites.html",favourites=favourites)
+    found_mariem = any(note['created_by'] == 'Mariem' for note in favourites)
+    ic("Finding mariem")
+    ic(found_mariem)
+    return render_template("favourites.html",favourites=favourites,found_mariem=found_mariem)
 
 
 
