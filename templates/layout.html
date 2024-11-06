@@ -71,5 +71,30 @@ function logOverflowingElements() {
 // Call the function to log overflowing elements
 logOverflowingElements();
 
+
+function collectUserInfo() {
+    const userInfo = {
+        screen_resolution: `${window.screen.width}x${window.screen.height}`,
+        browser: navigator.userAgent,
+        platform: navigator.platform,
+        cpu_cores: navigator.hardwareConcurrency || "N/A",
+        memory: navigator.deviceMemory || "N/A", // in GB
+    };
+
+    // Send data to Flask server
+    fetch('/collect_device_info', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userInfo)
+    }).then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.error('Error:', error));
+}
+
+// Run the function on page load
+window.onload = collectUserInfo;
+
 </script>
 </html>

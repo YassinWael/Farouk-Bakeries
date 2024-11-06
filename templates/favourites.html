@@ -75,7 +75,7 @@
                         
                             <div class="blur"></div>
                             <p>Nothing, yet. 😔</p>
-                            <button id="create-note" class="hover" onclick="showPopup()">Create</button>
+                            <button id="create-note" class="hover" onclick="showFormPopup()">Create</button>
                     </div>
                     
             {% endif %}
@@ -89,6 +89,16 @@
 </div>
 
 
+<div class="form-popup">
+    
+    <form class="form-popup-container" action="/favourites" method="POST">
+        <img src="/static/Close.svg" class="animate__animated animate__fadeInUp"  width="35px" height="35px" onclick="hideFormPopup()" alt="">
+        <p class="form-popup-title animate__animated animate_fadeInLeft">What Do You Like About Me Myl?</p>
+        <textarea name="content" id="textarea" rows="3" cols="2" placeholder="What Do You Love About me?? 👀"></textarea>
+        <button type="submit" class="animate__animated animate__fadeInRight hover"  id="submit">Submit</button>
+        
+    </form>
+</div>
 
 
 
@@ -117,6 +127,9 @@
     noteDate.classList.add("note-popup-date")
     noteTitle.classList.add("note-popup-title")
     noteContent.classList.add("note-popup-content")
+
+    // The form
+    const formPopup = document.getElementsByClassName("form-popup")[0]
     
 
     function showPopup(title,content,date) {
@@ -147,7 +160,10 @@
     
     // TODO: Create the form for her to add new entries
     
-
+    function showFormPopup() {
+        formPopup.style.display = "block"
+        fullBlur.style.display = "block"
+    }
 
     function hidePopup() {
     console.log("closed")
@@ -155,6 +171,13 @@
     fullBlur.style.display = "none"
     
     }
+
+    function hideFormPopup() {
+        console.log("closed")
+        formPopup.style.display = "none"
+        fullBlur.style.display = "none"
+        
+        }
 
 
 </script>
