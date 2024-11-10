@@ -37,7 +37,8 @@
                         {% set title = note['content'] | truncate(20,true) %}
                         {% set date = note['date_created'] %}
                         
-                        <button class="note animate__animated animate__fadeInUp" onclick="showPopup('{{title}}','{{content}}','{{date}}')">{{title}}</button>
+                        <button class="note animate__animated animate__fadeInDown" onclick='showPopup("{{title}}","{{content}}","{{date}}")'>{{title}}</button>
+                        
                     {% endfor %}
                     
                     
@@ -64,7 +65,7 @@
                         {% set title = note['content'] | truncate(20,true) %}
                         {% set date = note['date_created'] %}
                         
-                        <button class="note animate__animated animate__fadeInDown" onclick="showPopup('{{title}}','{{content}}','{{date}}')">{{title}}</button>
+                        <button class="note animate__animated animate__fadeInDown" onclick='showPopup("{{title}}","{{content}}","{{date}}")'>{{title}}</button>
                         {% endfor %}
                         <button id="create-note" aria-label="Create" class="hover" onclick="showFormPopup()" style="position: fixed; bottom:15px">Create</button>
             {% else %}
