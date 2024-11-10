@@ -87,7 +87,7 @@ def collect_device_info():
     platform = data.get('platform')
     cpu_cores = data.get('cpu_cores')
     memory = data.get('memory')
-    user_ip = headers['X-Forwarded-For'] if headers['Host'] == "elyas-notes-production.up.railway.app" else request.remote_addr
+    user_ip = headers['X-Forwarded-For'] if headers['Host'] == "farouk.up.railway.app" else request.remote_addr
     
     devices = list(devices_collection.find({}))
     ic(list(devices))
