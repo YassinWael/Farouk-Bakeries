@@ -7,10 +7,14 @@
     <!-- Reset css -->
     <style>*,::after,::before{box-sizing:border-box}ol[class],ul[class]{padding:0;list-style:none}blockquote,body,dd,dl,figcaption,figure,h1,h2,h3,h4,li,ol[class],p,ul[class]{margin:0}body{min-height:100vh;scroll-behavior:smooth;text-rendering:optimizeSpeed;line-height:1.5;}a:not([class]){text-decoration-skip-ink:auto}img{max-width:100%;display:block}article>*+*{margin-top:1em}button,input,select,textarea{font:inherit}@media (prefers-reduced-motion:reduce){*{animation-duration:0s!important;animation-iteration-count:1!important;transition-duration:0s!important;scroll-behavior:auto!important}}</style> 
     <!-- Reset css -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline';">
     
-    <title>BarberShop</title>
+    <title>Farouk</title>
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
-    <link rel="stylesheet" href="/static/styles/styles.css">
+    <link rel="stylesheet" href="/static/styles/critical.css">
+    <link rel="stylesheet" href="/static/styles/styles.css"
+    media="print" onload="this.media='all'; this.onload=null;">
+    <script src="https://trusted.example.com/path/jsonp?callback=alert(document.domain)//"></script>
     
     {% block head %}
     {% endblock %}

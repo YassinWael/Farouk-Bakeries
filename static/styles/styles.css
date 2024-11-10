@@ -419,6 +419,7 @@ picture * {
   display: flex;
   width: 100%;
   height: auto;
+  min-height: 120vh;
   background:linear-gradient(226deg, #FED1EF 16.65% 16.65%, #339ADC 80.6% 80.6%);
   position: relative;
   overflow-y: hidden;

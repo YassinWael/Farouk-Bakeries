@@ -66,17 +66,17 @@
                         
                         <button class="note animate__animated animate__fadeInDown" onclick="showPopup('{{title}}','{{content}}','{{date}}')">{{title}}</button>
                         {% endfor %}
-                        <button id="create-note" class="hover" onclick="showFormPopup()" style="position: fixed; bottom:15px">Create</button>
+                        <button id="create-note" aria-label="Create" class="hover" onclick="showFormPopup()" style="position: fixed; bottom:15px">Create</button>
             {% else %}
                     <div class="hidden-her">
 
                         <div class="hidden-notes-container">
-                            <button class="note"></button><button class="note"></button><button class="note"></button><button class="note"></button>
+                            <button class="note" aria-label="Create"></button><button aria-label="Create" class="note"></button><button aria-label="Create" class="note"></button><button aria-label="Create" class="note"></button>
                         </div>
                         
                             <div class="blur"></div>
                             <p>Nothing, yet. 😔</p>
-                            <button id="create-note" class="hover" onclick="showFormPopup()">Create</button>
+                            <button id="create-note" aria-label="Create" class="hover" onclick="showFormPopup()">Create</button>
                     </div>
                     
             {% endif %}
