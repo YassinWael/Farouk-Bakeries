@@ -65,7 +65,8 @@
                         {% set date = note['date_created'] %}
                         
                         <button class="note animate__animated animate__fadeInDown" onclick="showPopup('{{title}}','{{content}}','{{date}}')">{{title}}</button>
-            {% endfor %}
+                        {% endfor %}
+                        <button id="create-note" class="hover" onclick="showFormPopup()" style="position: fixed; bottom:15px">Create</button>
             {% else %}
                     <div class="hidden-her">
 

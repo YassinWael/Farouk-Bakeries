@@ -1,4 +1,5 @@
-from flask import Flask,render_template,request,jsonify
+from bson import ObjectId
+from flask import Flask,render_template,request,jsonify, session
 from pymongo import MongoClient
 from os import environ
 from dotenv import load_dotenv
@@ -6,7 +7,11 @@ from icecream import ic
 import pytz
 from datetime import datetime
 load_dotenv()
+
 app = Flask(__name__)
+app.secret_key = "UHEFUEHFSUSUPERDUPERNIGGA"
+
+
 ic("first")
 client = MongoClient(environ.get("mongodb"))
 db = client["favourites"]   
@@ -29,6 +34,7 @@ def time_now():
 
 @app.route("/")
 def home():
+    ic(session.get('_id'))
     return render_template("home.html")
 
 
@@ -43,17 +49,29 @@ def show_favourites():
 
 
     if request.method == "POST":
-        headers = dict(request.headers)
-        ic(headers)
-        user_ip = headers['X-Forwarded-For'] if headers['Host'] == "elyas-notes-production.up.railway.app" else request.remote_addr
-        user_agent = headers['User-Agent']
+
+        
+        user_id = session.get("_id")
         content = request.form.get("content")
+
+        post = {
+            "content":content,
+            "date_created":time_now(),
+            "created_by":"Mariem"
+        }
+
+        if user_id:
+            ic("USER EXISTS")
+            user = devices_collection.find({"_id":ObjectId(user_id)})
+            ic(user)
+            devices_collection.update_one({"_id":ObjectId(user_id)},{"$push":{"posts":post}})
+            ic("SUCCESSFULLY ADDED POST TO USER")
+        favourites_collection.insert_one(post)
+
+
         ic(content)
 
-        device = {
-            "user_ip":user_ip,
-            "user_agent":user_agent
-        }
+     
 
 
     return render_template("favourites.html",favourites=favourites,found_mariem=found_mariem)
@@ -72,36 +90,52 @@ def collect_device_info():
     user_ip = headers['X-Forwarded-For'] if headers['Host'] == "elyas-notes-production.up.railway.app" else request.remote_addr
     
     devices = list(devices_collection.find({}))
-    # ic(list(devices))
-    device = {
+    ic(list(devices))
+   
+   
+
+    device_query = {
+        "device.screen_res": screen_res,
+        "device.browser": browser,
+        "device.platform": platform,
+        "device.cpu_cores": cpu_cores,
+        "device.memory": memory,
+        "device.user_ip": user_ip
+    }
+
+    existing_device = devices_collection.find_one(device_query)
+
+    if existing_device:
+        devices_collection.update_one(device_query,{"$inc":{"device.times_visited":1}})
+        devices_collection.update_one(device_query,{"$set":{"device.last_time_visited":time_now()}})
+    else: 
+        device = {
+        "posts":[],
         "screen_res":screen_res,
         "browser":browser,
         "platform":platform,
         "cpu_cores":cpu_cores,
         "memory":memory,
-        "user_ip":user_ip
+        "user_ip":user_ip,
+        "times_visited":1,
+        "first_time_visited":time_now(),
+        "last_time_visited":time_now()
 
     }
-    for empty_device in [{k:v for k,v in device_without_id.items() if k!= '_id'} for device_without_id in devices]:
-        ic(device,empty_device)
-        ic("__________________________________________________________")
-        ic("__________________________________________________________")
-        ic("__________________________________________________________")
-        ic("__________________________________________________________")
+        
+        devices_collection.insert_one({"device":device})
+        existing_device = devices_collection.find_one(device_query)
 
- 
-
-
-    if device not in [{k:v for k,v in device_without_id.items() if k!= '_id' and k!='times_visited' and k!= 'first_time_visited'} for device_without_id in devices]:
-        device["times_visited"] = "first timer"
-        device["first_time_visited"] = time_now()
-        devices_collection.insert_one(device)
-    else:
-        # devices_collection.update_one({})
-        pass
+   
+    try:
+        session['_id'] = str(existing_device['_id'])
+    except Exception as e:
+        print(f"Error found: {e}")
+        ic( f"{existing_device}")
+    
     
     ic("DEVICE INFO SAVED SUCCESSFULLY")
-    # You can save the data to a database or process it here
+ 
     return jsonify({"status": "success"}), 200
 
 if __name__ == '__main__':

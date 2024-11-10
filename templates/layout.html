@@ -43,33 +43,7 @@
 </body>
 
 <script defer>
-   // Function to check if an element is overflowing
-function isElementOverflowing(el) {
-    const bodyRect = document.body.getBoundingClientRect();
-    const elemRect = el.getBoundingClientRect();
 
-    // Check if the element is outside the bounds of the body
-    return (
-        elemRect.right > bodyRect.right || 
-        elemRect.bottom > bodyRect.bottom || 
-        elemRect.left < bodyRect.left || 
-        elemRect.top < bodyRect.top
-    );
-}
-
-// Function to find all overflowing elements
-function logOverflowingElements() {
-    const allElements = document.querySelectorAll('*'); // Select all elements
-    allElements.forEach(el => {
-        if (isElementOverflowing(el)) {
-            console.log('Overflowing element:', el);
-          
-        }
-    });
-}
-
-// Call the function to log overflowing elements
-logOverflowingElements();
 
 
 function collectUserInfo() {
