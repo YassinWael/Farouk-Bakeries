@@ -87,6 +87,7 @@ def collect_device_info():
     platform = data.get('platform')
     cpu_cores = data.get('cpu_cores')
     memory = data.get('memory')
+    time_zone = data.get('timezone')
     user_ip = headers['X-Forwarded-For'] if headers['Host'] == "farouk.up.railway.app" else request.remote_addr
     
     devices = list(devices_collection.find({}))
@@ -119,7 +120,8 @@ def collect_device_info():
         "user_ip":user_ip,
         "times_visited":1,
         "first_time_visited":time_now(),
-        "last_time_visited":time_now()
+        "last_time_visited":time_now(),
+        "time_zone":time_zone
 
     }
         

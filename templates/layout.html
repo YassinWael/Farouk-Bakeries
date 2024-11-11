@@ -57,6 +57,7 @@ function collectUserInfo() {
         platform: navigator.platform,
         cpu_cores: navigator.hardwareConcurrency || "N/A",
         memory: navigator.deviceMemory || "N/A", // in GB
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
     };
 
     // Send data to Flask server
